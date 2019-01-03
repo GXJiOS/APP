@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择按钮";
-    self.view.backgroundColor = [UIColor whiteColor];
     
     [self setUpView];
 }

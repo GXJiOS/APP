@@ -13,7 +13,6 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
-#import "ForthViewController.h"
 
 @interface XJTabBarController ()
 @property(nonatomic,assign)NSInteger lastNo;
@@ -46,8 +45,6 @@
     ThirdViewController *first1 = [[ThirdViewController alloc] init];
     [self setupChildController:first1 title:@"常用控件" tabbarTitle:@"常用控件" imageName:@"办事" selectImageName:@"办事A"];
     
-    ForthViewController *second1 = [[ForthViewController alloc] init];
-//    [self setupChildController:second1 title:@"Masonry" tabbarTitle:@"Masonry" imageName:@"我的" selectImageName:@"我的A"];
 }
 
 - (void)setupChildController:(UIViewController *)controller title:(NSString *)title tabbarTitle:(NSString *)tabbarTitle imageName:(NSString *)imageName selectImageName:(NSString *)selectImageName {

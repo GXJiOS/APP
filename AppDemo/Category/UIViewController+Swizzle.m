@@ -21,6 +21,7 @@ static char *viewLoadStartTimeKey = "viewLoadStartTimeKey";
 }
 + (void)load
 {
+    /**
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         SEL origSel = @selector(viewDidAppear:);
@@ -43,6 +44,7 @@ static char *viewLoadStartTimeKey = "viewLoadStartTimeKey";
         SEL swizWillDisappearSel=@selector(swiz_viewWillDisappear:);
         [UIViewController swizzleMethods:[self class] originalSelector:vcWillDisappearSel swizzledSelector:swizWillDisappearSel];
     });
+     **/
 }
 
 + (void)swizzleMethods:(Class)class originalSelector:(SEL)origSel swizzledSelector:(SEL)swizSel

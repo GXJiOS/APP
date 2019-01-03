@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"悬浮按钮";
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, (self.view.bounds.size.height-64)/2, SCREEN_WIDTH, 1)];
     line.backgroundColor = ColorString(@"000000");

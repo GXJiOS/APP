@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"都市报道";
-    self.view.backgroundColor = [UIColor whiteColor];
     
     //要添加的子视图
     NSMutableArray *viewArr = [[NSMutableArray alloc]init];

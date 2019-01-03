@@ -14,94 +14,81 @@
 #import "ButtonControlTest.h"
 #import "FloatButtonTest.h"
 #import "ProgressTest.h"
-#import "ZMProgressViewController.h"
 
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic,strong)NSArray *dataArray;
+@property (nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation FirstViewController
-{
-    UITableView *table;
-    NSArray *array;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    array = @[@"ScrollPages(仿今日头条)",@"弹框",@"选择按钮和多个按钮自动换行",@"悬浮按钮",@"进度条",@"仿芝麻信用"];
 
-    table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, kSCREENHEIGHT)];
-    table.delegate = self;
-    table.dataSource = self;
-    [self.view addSubview:table];
-
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kSCREENWIDTH, kSCREENHEIGHT)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
     
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return array.count;
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.dataArray.count;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellsign = @"tablecell";
     UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:cellsign];
     if (cell ==nil) {
         cell  = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellsign];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = array[indexPath.row];
+    cell.textLabel.text = [self.dataArray[indexPath.row]objectForKey:@"title"];
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.row) {
-        case 0:
-        {
-            [self.navigationController pushViewController:[CityRecorderController new] animated:YES];
-        }
-            break;
-            
-        case 1:
-        {
-            [self.navigationController pushViewController:[PopWindowController new] animated:YES];
-        }
-            break;
-            
-        case 2:
-        {
-            [self.navigationController pushViewController:[ButtonControlTest new] animated:YES];
-        }
-            break;
-            
-        case 3:
-        {
-            [self.navigationController pushViewController:[FloatButtonTest new] animated:YES];
-        }
-            break;
-            
-        case 4:
-        {
-            [self.navigationController pushViewController:[ProgressTest new] animated:YES];
-        }
-            break;
-            
-        case 5:
-        {
-            [self.navigationController pushViewController:[ZMProgressViewController new] animated:YES];
-        }
-            break;
-            
-        default:
-            break;
-    }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Class controller = NSClassFromString([self.dataArray[indexPath.row]objectForKey:@"controller"]);
+    [self.navigationController pushViewController:[[controller alloc]init] animated:YES];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark -- getters
+- (NSArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = @[
+                       @{
+                           @"title":@"ScrollPages(仿今日头条)",
+                           @"controller":@"CityRecorderController"
+                           },
+                       @{
+                           @"title":@"弹框",
+                           @"controller":@"PopWindowController"
+                           },
+                       @{
+                           @"title":@"选择按钮和多个按钮自动换行",
+                           @"controller":@"ButtonControlTest"
+                           },
+                       @{
+                           @"title":@"悬浮按钮",
+                           @"controller":@"FloatButtonTest"
+                           },
+                       @{
+                           @"title":@"进度条",
+                           @"controller":@"ProgressTest"
+                           },
+                       ];
+    }
+    return _dataArray;
 }
 
 

@@ -21,7 +21,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
     NSLog(@"%f==%f",self.view.frame.size.width,self.view.frame.size.height);

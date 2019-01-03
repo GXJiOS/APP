@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"弹框";
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(20, 20, 100, 40)];
     [btn1 setTitle:@"中部弹框" forState:0];
