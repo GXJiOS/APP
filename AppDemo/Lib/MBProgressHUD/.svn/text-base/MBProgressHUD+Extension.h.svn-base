@@ -1,0 +1,18 @@
+//
+//  MBProgressHUD+Extension.h
+//  HessianDemo
+//
+//  Created by 史伟文 on 15/10/13.
+//  Copyright (c) 2015年 XuanRuiTechnology. All rights reserved.
+//
+
+#import "MBProgressHUD.h"
+
+@interface MBProgressHUD (Extension)
+
++ (void)showTip:(NSString *)tip;
+
++ (MBProgressHUD *)showHUDWithMessage:(NSString *)message;
++ (void)hideHUD;
+
+@end

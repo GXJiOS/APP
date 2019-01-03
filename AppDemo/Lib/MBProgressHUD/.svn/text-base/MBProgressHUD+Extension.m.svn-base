@@ -1,0 +1,55 @@
+//
+//  MBProgressHUD+Extension.m
+//  HessianDemo
+//
+//  Created by 史伟文 on 15/10/13.
+//  Copyright (c) 2015年 XuanRuiTechnology. All rights reserved.
+//
+
+#import "MBProgressHUD+Extension.h"
+
+@implementation MBProgressHUD (Extension)
+#pragma mark - 显示一条提醒信息，自动消失
++ (void)show:(NSString *)text
+{
+    UIView *view;
+    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.labelText = text;
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1.0];
+}
+
++ (void)showTip:(NSString *)tip
+{
+    [self show:tip];
+}
+
+#pragma mark - 显示加载控件，手动消失
++ (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view {
+    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.labelText = message;
+    hud.removeFromSuperViewOnHide = YES;
+    hud.dimBackground = YES;
+    return hud;
+}
+
++ (MBProgressHUD *)showHUDWithMessage:(NSString *)message
+{
+    return [self showMessage:message toView:nil];
+}
+
++ (void)hideHUDForView:(UIView *)view
+{
+    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
+    [self hideHUDForView:view animated:YES];
+}
+
++ (void)hideHUD
+{
+    [self hideHUDForView:nil];
+}
+
+@end
